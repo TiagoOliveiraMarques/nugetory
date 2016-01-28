@@ -1,0 +1,20 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>nugetory</id>
+    <version>0.1.1</version>
+    <title>nugetory</title>
+    <authors>abelsilva</authors>
+    <owners>abelsilva</owners>
+    <licenseUrl>https://raw.githubusercontent.com/abelsilva/nugetory/master/LICENSE</licenseUrl>
+    <projectUrl>http://github.com/abelsilva/nugetory/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Nuget repository</description>
+    <releaseNotes>No release notes.</releaseNotes>
+    <copyright>Copyright 2016</copyright>
+    <tags>nuget repository .net c#</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\**" target="" />
+  </files>
+</package>
