@@ -15,6 +15,14 @@ namespace nugetory.Data.DB
         public JSONStore(string filename)
         {
             Filename = filename;
+
+            string configFileDirectory = Path.GetDirectoryName(Filename);
+
+            if (configFileDirectory == null)
+                throw new ArgumentException("Invalid configuration file location");
+
+            if (!Directory.Exists(configFileDirectory))
+                Directory.CreateDirectory(configFileDirectory);
         }
 
         public Task<long> Count()

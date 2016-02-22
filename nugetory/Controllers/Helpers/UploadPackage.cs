@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,7 +12,16 @@ namespace nugetory.Controllers.Helpers
 {
     public static class UploadPackage
     {
+        private static string UploadDirectory { get; set; }
         public static PackageDAO PackageDAO { get; set; }
+
+        internal static void SetUploadDirectory(string value)
+        {
+            UploadDirectory = value;
+
+            if (!Directory.Exists(UploadDirectory))
+                Directory.CreateDirectory(UploadDirectory);
+        }
 
         public static async Task<HttpResponseMessage> Process(HttpRequestMessage request)
         {
@@ -21,7 +31,7 @@ namespace nugetory.Controllers.Helpers
                 throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
 
-            string root = Configuration.UploadDirectory;
+            string root = UploadDirectory;
             MultipartFormDataStreamProvider provider = new MultipartFormDataStreamProvider(root);
 
             try

@@ -1,4 +1,4 @@
-﻿using nugetory.Controllers;
+﻿using nugetory.Configuration;
 using nugetory.Controllers.Helpers;
 using nugetory.Data.DAO;
 using nugetory.Data.DB;
@@ -9,6 +9,12 @@ namespace nugetory.Data
 {
     internal class DataManager
     {
+        public DataManager(Store configurationStore)
+        {
+            ConfigurationStore = configurationStore;
+        }
+
+        private Store ConfigurationStore { get; set; }
         public PackageDAO PackageDAO { get; set; }
         public ICollection<Package> PackageCollection { get; set; }
         public IFileStore FileStore { get; set; }
@@ -16,19 +22,9 @@ namespace nugetory.Data
         public void Start()
         {
             //TODO: allow different types of stores (e.g.: mongodb)
-            FileStore = new FileStoreFilesystem(Configuration.PackagesDirectory);
-            PackageCollection = new JSONStore<Package>(Configuration.ConfigurationFile);
+            FileStore = new FileStoreFilesystem(ConfigurationStore);
+            PackageCollection = new JSONStore<Package>(ConfigurationStore.DatabaseFile.Value);
             PackageDAO = new PackageDAO(PackageCollection, FileStore);
-
-            // inject
-            UploadPackage.PackageDAO = PackageDAO;
-            DownloadPackage.PackageDAO = PackageDAO;
-            DownloadPackage.FileStore = FileStore;
-            PackageDetails.PackageDAO = PackageDAO;
-            PackageDetails.FileStore = FileStore;
-            DeletePackage.PackageDAO = PackageDAO;
-            DeletePackage.FileStore = FileStore;
-            FindPackage.PackageDAO = PackageDAO;
         }
 
         public void Stop()

@@ -1,20 +1,26 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography;
+using nugetory.Configuration;
 using nugetory.Exceptions;
 
 namespace nugetory.Data.File
 {
     public class FileStoreFilesystem : IFileStore
     {
+        private Store ConfigurationStore { get; set; }
         public string PackagesDirectory { get; set; }
 
-        public FileStoreFilesystem(string packagesDirectory)
+        public FileStoreFilesystem(Store configurationStore)
         {
-            PackagesDirectory = packagesDirectory;
+            ConfigurationStore = configurationStore;
+            PackagesDirectory = ConfigurationStore.DatabasePackagesDirectory.Value;
 
             if (PackagesDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) == false)
                 PackagesDirectory = PackagesDirectory + Path.DirectorySeparatorChar;
+
+            if (!Directory.Exists(PackagesDirectory))
+                Directory.CreateDirectory(PackagesDirectory);
         }
 
         public string SaveFile(string originalFilename, string id)
@@ -73,9 +79,9 @@ namespace nugetory.Data.File
             return true;
         }
 
-        private static string GetPackageFileLocation(string filename)
+        private string GetPackageFileLocation(string filename)
         {
-            return Configuration.PackagesDirectory + GetPackageFileName(filename);
+            return PackagesDirectory + GetPackageFileName(filename);
         }
 
         public static string GetPackageFileName(string filename)
