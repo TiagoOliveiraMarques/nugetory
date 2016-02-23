@@ -12,6 +12,10 @@ namespace nugetory.Configuration
 
         public static ConfigItemDefaults<int> ServerPort = new ConfigItemDefaults<int>("SERVER", "PORT", 9000);
 
+        // --- API KEY
+
+        public static ConfigItemDefaults<string> ApiKey = new ConfigItemDefaults<string>("API", "KEY", null);
+
         // --- DATABASE
 
         private static readonly string DefaultDatabaseDirectory = OSEnvironment.IsUnix

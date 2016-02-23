@@ -34,10 +34,10 @@ namespace nugetory.Data.File
             // allow exception to be thrown in case of error
             System.IO.File.Move(originalFilename, packageFilename);
 
-            using (MD5 md5 = MD5.Create())
+            using (SHA512 sha512 = SHA512.Create())
             using (FileStream stream = System.IO.File.OpenRead(packageFilename))
             {
-                checksum = Convert.ToBase64String(md5.ComputeHash(stream));
+                checksum = Convert.ToBase64String(sha512.ComputeHash(stream));
             }
 
             return checksum;

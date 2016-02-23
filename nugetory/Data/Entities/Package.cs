@@ -7,6 +7,7 @@ namespace nugetory.Data.Entities
     {
         public string Id { get; set; }
         public string Title { get; set; }
+        public string PackageTitle { get; set; }
         public string Version { get; set; }
         public string Authors { get; set; }
         public string Copyright { get; set; }
@@ -48,7 +49,8 @@ namespace nugetory.Data.Entities
             DateUpdated = DateCreated;
 
             Id = package.metadata.id.ToLowerInvariant() + "." + package.metadata.version.ToLowerInvariant();
-            Title = package.metadata.title;
+            Title = package.metadata.id;
+            PackageTitle = package.metadata.title;
             Version = package.metadata.version;
             Authors = package.metadata.authors;
             Copyright = package.metadata.copyright;

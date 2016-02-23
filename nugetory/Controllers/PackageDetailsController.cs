@@ -6,6 +6,7 @@ namespace nugetory.Controllers
 {
     public class PackageDetailsController : ApiController
     {
+        [AllowAnonymous]
         public HttpResponseMessage Get(string id, string version)
         {
             return PackageDetails.BuildResponse(Request, id, version);

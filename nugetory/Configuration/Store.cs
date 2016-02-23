@@ -14,6 +14,8 @@ namespace nugetory.Configuration
 
         public ConfigItemInt ServerPort { get; private set; }
 
+        public ConfigItemString ApiKey { get; private set; }
+
         public ConfigItemString DatabaseFile { get; private set; }
         public ConfigItemString DatabaseUploadDirectory { get; private set; }
         public ConfigItemString DatabasePackagesDirectory { get; private set; }
@@ -37,6 +39,8 @@ namespace nugetory.Configuration
             LoggingLevel = new ConfigItemInt(ConfigurationParser, ConfigDefaults.LoggingLevel);
 
             ServerPort = new ConfigItemInt(ConfigurationParser, ConfigDefaults.ServerPort);
+
+            ApiKey = new ConfigItemString(ConfigurationParser, ConfigDefaults.ApiKey);
 
             DatabaseFile = new ConfigItemString(ConfigurationParser, ConfigDefaults.DatabaseFile);
             DatabaseUploadDirectory = new ConfigItemString(ConfigurationParser, ConfigDefaults.DatabaseUploadDirectory);

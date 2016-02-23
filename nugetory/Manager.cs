@@ -62,7 +62,7 @@ namespace nugetory
 
             _log.Submit(LogLevel.Info, "Starting Nuget server");
 
-            OwinHost.Start(ConfigurationStore.ServerPort.Value);
+            OwinHost.Start(ConfigurationStore.ServerPort.Value, ConfigurationStore.ApiKey.Value);
 
             _log.Submit(LogLevel.Info, "Nuget server started");
         }

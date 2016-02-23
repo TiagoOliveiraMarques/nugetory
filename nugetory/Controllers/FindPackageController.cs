@@ -10,6 +10,7 @@ namespace nugetory.Controllers
 {
     public class FindPackageController : ApiController
     {
+        [AllowAnonymous]
         public HttpResponseMessage Get()
         {
             Dictionary<string, string> queryParams =

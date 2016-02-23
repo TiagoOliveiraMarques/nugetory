@@ -20,13 +20,13 @@ namespace nugetory.Controllers.Helpers
             Package package = PackageDAO.Read(id, version).Result;
             if (package == null)
                 throw new PackageNotFoundException();
+
             Stream fileStream = FileStore.GetFile(package.Id, package.PackageHash);
 
             HttpResponseMessage res = request.CreateResponse(HttpStatusCode.OK);
             res.Content = new StreamContent(fileStream);
 
             res.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-            res.Content.Headers.ContentMD5 = Convert.FromBase64String(package.PackageHash);
 
             return res;
         }

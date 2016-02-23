@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
@@ -10,6 +11,8 @@ namespace nugetory.Endpoint
 {
     public class ValidateAuthenticationAttribute : AuthorizationFilterAttribute
     {
+        public static string ApiKey { get; set; }
+
         public override void OnAuthorization(HttpActionContext actionContext)
         {
             if (SkipAuthorization(actionContext))
@@ -33,21 +36,33 @@ namespace nugetory.Endpoint
             if (actionContext == null)
                 return false;
 
-            return actionContext.ActionDescriptor.GetCustomAttributes<AllowAnonymousAttribute>().Any()
-                   ||
-                   actionContext.ControllerContext.ControllerDescriptor.GetCustomAttributes<AllowAnonymousAttribute>()
-                                .Any();
+            HttpActionDescriptor actionDesc = actionContext.ActionDescriptor;
+            HttpControllerDescriptor controllerDesc = actionContext.ControllerContext.ControllerDescriptor;
+
+            return actionDesc.GetCustomAttributes<AllowAnonymousAttribute>().Any() ||
+                   controllerDesc.GetCustomAttributes<AllowAnonymousAttribute>().Any();
         }
 
-        private bool ValidateRequestHeader(HttpRequestMessage request)
+        private static bool ValidateRequestHeader(HttpRequestMessage request)
         {
-            //string tokenValue = HttpRequestHeaderAuthToken.GetTokenFromHeader(request.Headers);
-            //if (string.IsNullOrWhiteSpace(tokenValue))
-            //    return false;
+            if (string.IsNullOrEmpty(ApiKey))
+                return true;
 
-            //var token = Guid.Parse(tokenValue);
-            //return Core.Aaa.Authentication.AuthManager.Validate(token.ToString());
-            return true;
+            string apiKey;
+            try
+            {
+                IEnumerable<string> nugetApiKeyValues = request.Headers.GetValues("X-Nuget-ApiKey");
+                apiKey = nugetApiKeyValues.FirstOrDefault();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(apiKey))
+                return false;
+
+            return ApiKey == apiKey;
         }
     }
 }
