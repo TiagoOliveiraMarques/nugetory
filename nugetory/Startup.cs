@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using nugetory.Console;
 using nugetory.Logging;
 
 namespace nugetory
@@ -13,25 +15,43 @@ namespace nugetory
 
             _log = LogFactory.Instance.GetLogger(typeof(Startup));
 
-            Manager m = new Manager();
 
-            try
+            if (args.Length >= 1 && args.Any(a => a == "-d"))
             {
-                m.Start();
+                IConsole console = ConsoleFactory.GetConsole();
+                
+                console.StartAndWait();
             }
-            catch (Exception e)
+            else if (args.Length >= 1 && args.Any(a => a == "-s"))
             {
-                _log.Submit(LogLevel.Fatal, "An error occurred when starting server!");
-                _log.SubmitException(e);
-                Environment.Exit(1);
+                IConsole console = ConsoleFactory.GetConsole();
+                
+                console.Stop();
             }
-            
-            _log.Submit(LogLevel.Info, new string('-', 70));
-            _log.Submit(LogLevel.Info, "Nugetory started! Press [ENTER] to stop...");
-            _log.Submit(LogLevel.Info, new string('-', 70));
-            Console.ReadLine();
+            else
+            {
+                Manager m;
 
-            m.Stop();
+                try
+                {
+                    m = new Manager();
+
+                    m.Start();
+                }
+                catch (Exception e)
+                {
+                    _log.Submit(LogLevel.Fatal, "An error occurred when starting server!");
+                    _log.SubmitException(e);
+                    return;
+                }
+
+                _log.Submit(LogLevel.Info, new string('-', 70));
+                _log.Submit(LogLevel.Info, "Nugetory started! Press [ENTER] to stop...");
+                _log.Submit(LogLevel.Info, new string('-', 70));
+                System.Console.ReadLine();
+
+                m.Stop();
+            }
         }
     }
 }

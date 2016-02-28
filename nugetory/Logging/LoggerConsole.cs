@@ -17,8 +17,9 @@ namespace nugetory.Logging
                 string threadName = Thread.CurrentThread.Name;
                 string message = obj as string ?? JsonConvert.SerializeObject(obj);
 
-                Console.WriteLine("{0} [{1}] {2} {3} {4}", timeStamp, threadName, level.ToString().ToUpperInvariant(),
-                                  type.FullName, message);
+                System.Console.WriteLine("{0} [{1}] {2} {3} {4}", timeStamp, threadName,
+                    level.ToString().ToUpperInvariant(),
+                    type.FullName, message);
             }
             catch (Exception)
             {
