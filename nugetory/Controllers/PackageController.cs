@@ -13,9 +13,9 @@ namespace nugetory.Controllers
             return WorkspaceRoot.GetWorkspace(Request);
         }
 
-        public async Task<HttpResponseMessage> Put()
+        public HttpResponseMessage Put()
         {
-            return await UploadPackage.Process(Request);
+            return UploadPackage.Process(Request);
         }
     }
 }

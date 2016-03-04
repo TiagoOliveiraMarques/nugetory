@@ -32,19 +32,17 @@ namespace nugetory.Data.DAO
             return base.Read(GetId(title, version));
         }
 
-        public bool ProcessPackage(string localFileName)
+        public bool ProcessPackage(Stream fileStream)
         {
-            Stream zipStream = new FileStream(localFileName, FileMode.Open, FileAccess.Read);
-            ZipArchive archive = new ZipArchive(zipStream);
+            MemoryStream memoryStream = new MemoryStream();
+            fileStream.CopyTo(memoryStream);
+            ZipArchive archive = new ZipArchive(memoryStream);
 
             ZipArchiveEntry file = archive.Entries.FirstOrDefault(entry => entry.FullName.EndsWith(".nuspec"));
             if (file == null)
                 throw new InvalidOperationException("No nuspec in nupkg");
 
             string nuspecContent = new StreamReader(file.Open()).ReadToEnd();
-
-            archive.Dispose();
-            zipStream.Close();
 
             XmlSerializer ser = new XmlSerializer(typeof(package));
 
@@ -73,11 +71,15 @@ namespace nugetory.Data.DAO
                 if (!rgxVersion.IsMatch(version))
                     throw new InvalidOperationException("Invalid version specified in nuspec");
 
-                long size = new FileInfo(localFileName).Length;
-                string checksum = FileStore.SaveFile(localFileName, title + "." + version);
+                long size = memoryStream.Length;
+                memoryStream.Position = 0;
+                string checksum = FileStore.SaveFile(memoryStream, title + "." + version);
 
                 Package package = new Package(nuspec, checksum, size);
 
+                memoryStream.Close();
+                archive.Dispose();
+                fileStream.Close();
                 return Create(package).Result;
             }
         }

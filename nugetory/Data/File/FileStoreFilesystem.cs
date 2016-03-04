@@ -23,7 +23,7 @@ namespace nugetory.Data.File
                 Directory.CreateDirectory(PackagesDirectory);
         }
 
-        public string SaveFile(string originalFilename, string id)
+        public string SaveFile(Stream originalFilename, string id)
         {
             string checksum;
             string packageFilename = GetPackageFileLocation(id);
@@ -32,7 +32,10 @@ namespace nugetory.Data.File
                 throw new AlreadyExistsException();
 
             // allow exception to be thrown in case of error
-            System.IO.File.Move(originalFilename, packageFilename);
+            using (FileStream fs = new FileStream(packageFilename, FileMode.Create, FileAccess.Write))
+            {
+                originalFilename.CopyTo(fs);
+            }
 
             using (SHA512 sha512 = SHA512.Create())
             using (FileStream stream = System.IO.File.OpenRead(packageFilename))
