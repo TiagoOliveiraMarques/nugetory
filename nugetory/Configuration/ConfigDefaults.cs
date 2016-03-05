@@ -26,11 +26,6 @@ namespace nugetory.Configuration
                                                                                                DefaultDatabaseDirectory +
                                                                                                "config.json");
 
-        public static ConfigItemDefaults<string> DatabaseUploadDirectory = new ConfigItemDefaults<string>("DATABASE",
-                                                                                                          "UPLOAD",
-                                                                                                          DefaultDatabaseDirectory +
-                                                                                                          "upload");
-
         public static ConfigItemDefaults<string> DatabasePackagesDirectory = new ConfigItemDefaults<string>("DATABASE",
                                                                                                             "PACKAGES",
                                                                                                             DefaultDatabaseDirectory +

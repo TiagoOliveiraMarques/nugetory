@@ -1,0 +1,14 @@
+language: csharp
+solution: nugetory.sln
+install:
+  - nuget restore nugetory.sln
+  - nuget install NUnit.Console -ExcludeVersion -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release nugetory.sln
+  - export LOGGING_LEVEL=5
+  - export SERVER_PORT=9000
+  - export API_KEY=test
+  - export DATABASE_FILE=/tmp/nugetory/db.json
+  - export DATABASE_PACKAGES=/tmp/nugetory/packages
+  - mkdir /tmp/nugetory
+  - mono ./testrunner/NUnit.Console/tools/nunit3-console.exe ./nugetory.tests/bin/Release/nugetory.tests.dll --labels=On --nocolor --verbose --workers=1 --full --result:"./nunit-result.xml;format=nunit2"

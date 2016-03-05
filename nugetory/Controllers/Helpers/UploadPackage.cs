@@ -17,16 +17,7 @@ namespace nugetory.Controllers.Helpers
     public static class UploadPackage
     {
         private static readonly ILogger Log = LogFactory.Instance.GetLogger(typeof(UploadPackage));
-        private static string UploadDirectory { get; set; }
         public static PackageDAO PackageDAO { get; set; }
-
-        internal static void SetUploadDirectory(string value)
-        {
-            UploadDirectory = value;
-
-            if (!Directory.Exists(UploadDirectory))
-                Directory.CreateDirectory(UploadDirectory);
-        }
 
         public static HttpResponseMessage Process(HttpRequestMessage request)
         {

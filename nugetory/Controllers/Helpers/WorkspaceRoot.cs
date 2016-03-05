@@ -14,6 +14,17 @@ namespace nugetory.Controllers.Helpers
         {
             Uri uri = request.RequestUri;
 
+            string content = GetWorkspaceContent(uri.ToString());
+
+            HttpResponseMessage res = request.CreateResponse(HttpStatusCode.OK);
+            res.Content = new StringContent(content, Encoding.UTF8, "text/xml");
+            res.Content.Headers.ContentLength = content.Length;
+
+            return res;
+        }
+
+        public static string GetWorkspaceContent(string uri)
+        {
             string result = "<?xml version='1.0' encoding='utf-8' standalone='yes'?>";
             result += "<service xml:base=\"" + uri + "\" ";
             result += "xmlns:atom=\"http://www.w3.org/2005/Atom\" ";
@@ -27,10 +38,7 @@ namespace nugetory.Controllers.Helpers
             result += "</workspace>";
             result += "</service>";
 
-            HttpResponseMessage res = request.CreateResponse(HttpStatusCode.OK);
-            res.Content = new StringContent(result, Encoding.UTF8, "text/xml");
-
-            return res;
+            return result;
         }
     }
 }

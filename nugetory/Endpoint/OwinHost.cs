@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Web.Http;
 using System.Web.Http.Filters;
 using Microsoft.Owin.Hosting;
+using nugetory.Logging;
 using Newtonsoft.Json;
 using Owin;
 
@@ -12,8 +13,15 @@ namespace nugetory.Endpoint
 {
     internal class OwinHost
     {
+        private static readonly ILogger Log;
+
         private static IDisposable Server { get; set; }
         private static string ApiKey { get; set; }
+
+        static OwinHost()
+        {
+            Log = LogFactory.Instance.GetLogger(typeof(OwinHost));
+        }
 
         public static void Start(int port, string apiKey)
         {
@@ -21,11 +29,15 @@ namespace nugetory.Endpoint
 
             string baseAddress = "http://+:" + port + "/";
 
+            Log.Submit(LogLevel.Info, "Starting OWIN listener on " + baseAddress);
+
             Server = WebApp.Start<OwinHost>(baseAddress);
         }
 
         public static void Stop()
         {
+            Log.Submit(LogLevel.Info, "Stopping OWIN listener");
+
             Server.Dispose();
         }
 

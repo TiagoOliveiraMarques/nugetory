@@ -46,8 +46,6 @@ namespace nugetory
 
             _log.Submit(LogLevel.Info, "Setting up environment");
 
-            UploadPackage.SetUploadDirectory(ConfigurationStore.DatabaseUploadDirectory.Value);
-
             // inject
             UploadPackage.PackageDAO = DataManager.PackageDAO;
             DownloadPackage.PackageDAO = DataManager.PackageDAO;

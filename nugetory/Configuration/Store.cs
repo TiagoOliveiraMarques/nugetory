@@ -17,7 +17,6 @@ namespace nugetory.Configuration
         public ConfigItemString ApiKey { get; private set; }
 
         public ConfigItemString DatabaseFile { get; private set; }
-        public ConfigItemString DatabaseUploadDirectory { get; private set; }
         public ConfigItemString DatabasePackagesDirectory { get; private set; }
 
         public Store()
@@ -43,7 +42,6 @@ namespace nugetory.Configuration
             ApiKey = new ConfigItemString(ConfigurationParser, ConfigDefaults.ApiKey);
 
             DatabaseFile = new ConfigItemString(ConfigurationParser, ConfigDefaults.DatabaseFile);
-            DatabaseUploadDirectory = new ConfigItemString(ConfigurationParser, ConfigDefaults.DatabaseUploadDirectory);
             DatabasePackagesDirectory = new ConfigItemString(ConfigurationParser,
                                                              ConfigDefaults.DatabasePackagesDirectory);
 

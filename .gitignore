@@ -57,3 +57,5 @@ TestResults/
 
 # nuget packages
 *.nupkg
+
+*nunit-result.xml
