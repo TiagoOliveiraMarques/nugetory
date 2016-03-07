@@ -2,15 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd542265-6d94-4ece-adeb-460f9b1be36c" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/jenkins-ci.sh" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory.sln" afterPath="$PROJECT_DIR$/nugetory.sln" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory.tests/SetUp.cs" afterPath="$PROJECT_DIR$/nugetory.tests/SetUp.cs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/Configuration/ConfigDefaults.cs" afterPath="$PROJECT_DIR$/nugetory/Configuration/ConfigDefaults.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/Configuration/Store.cs" afterPath="$PROJECT_DIR$/nugetory/Configuration/Store.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/Controllers/Helpers/UploadPackage.cs" afterPath="$PROJECT_DIR$/nugetory/Controllers/Helpers/UploadPackage.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/Controllers/Helpers/WorkspaceRoot.cs" afterPath="$PROJECT_DIR$/nugetory/Controllers/Helpers/WorkspaceRoot.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/Controllers/RootController.cs" afterPath="$PROJECT_DIR$/nugetory/Controllers/RootController.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/Endpoint/OwinHost.cs" afterPath="$PROJECT_DIR$/nugetory/Endpoint/OwinHost.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/Manager.cs" afterPath="$PROJECT_DIR$/nugetory/Manager.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/Data/DataManager.cs" afterPath="$PROJECT_DIR$/nugetory/Data/DataManager.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nugetory/nugetory.csproj" afterPath="$PROJECT_DIR$/nugetory/nugetory.csproj" />
     </list>
     <ignored path="nugetory.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,7 +25,18 @@
     <favorites_list name="nugetory" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="SetUp.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/nugetory.tests/SetUp.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="377">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -41,19 +47,22 @@
         <option value="$PROJECT_DIR$/nugetory/Tools/OSEnvironment.cs" />
         <option value="$PROJECT_DIR$/nugetory/Controllers/PackageController.cs" />
         <option value="$PROJECT_DIR$/nugetory/Data/DAO/PackageDAO.cs" />
-        <option value="$PROJECT_DIR$/nugetory/Data/File/FileStoreFilesystem.cs" />
-        <option value="$PROJECT_DIR$/nugetory/Configuration/ConfigDefaults.cs" />
-        <option value="$PROJECT_DIR$/nugetory/Configuration/Store.cs" />
         <option value="$PROJECT_DIR$/nugetory.tests/Setup.cs" />
         <option value="$PROJECT_DIR$/nugetory/Controllers/Helpers/UploadPackage.cs" />
         <option value="$PROJECT_DIR$/nugetory/Manager.cs" />
         <option value="$PROJECT_DIR$/nugetory.tests/packages.config" />
-        <option value="$PROJECT_DIR$/nugetory.tests/SetUp.cs" />
         <option value="$PROJECT_DIR$/nugetory/Endpoint/OwinHost.cs" />
         <option value="$PROJECT_DIR$/nugetory/Controllers/RootController.cs" />
         <option value="$PROJECT_DIR$/nugetory/Controllers/Helpers/WorkspaceRoot.cs" />
         <option value="$PROJECT_DIR$/nugetory.tests/Support/HttpClient.cs" />
         <option value="$PROJECT_DIR$/nugetory.tests/Integration/RootControllerTests.cs" />
+        <option value="$PROJECT_DIR$/nugetory/Data/DB/JSONMemoryStore.cs" />
+        <option value="$PROJECT_DIR$/nugetory/Data/File/FileStoreFilesystem.cs" />
+        <option value="$PROJECT_DIR$/nugetory/Data/File/FileStoreMemory.cs" />
+        <option value="$PROJECT_DIR$/nugetory/Configuration/ConfigDefaults.cs" />
+        <option value="$PROJECT_DIR$/nugetory/Configuration/Store.cs" />
+        <option value="$PROJECT_DIR$/nugetory.tests/SetUp.cs" />
+        <option value="$PROJECT_DIR$/nugetory/Data/DataManager.cs" />
       </list>
     </option>
   </component>
@@ -206,7 +215,7 @@
               <option name="myItemType" value="com.jetbrains.resharper.projectView.nodes.RiderProjectViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="Data" />
               <option name="myItemType" value="com.jetbrains.resharper.projectView.nodes.RiderProjectViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -224,11 +233,29 @@
               <option name="myItemType" value="com.jetbrains.resharper.projectView.nodes.RiderProjectViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
+              <option name="myItemId" value="Data" />
               <option name="myItemType" value="com.jetbrains.resharper.projectView.nodes.RiderProjectViewNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Helpers" />
+              <option name="myItemId" value="DB" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.nodes.RiderProjectViewNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nugetory" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nugetory" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.nodes.RiderProjectViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="nugetory" />
+              <option name="myItemType" value="com.jetbrains.resharper.projectView.nodes.RiderProjectViewNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Configuration" />
               <option name="myItemType" value="com.jetbrains.resharper.projectView.nodes.RiderProjectViewNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -277,9 +304,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="773" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41477272" sideWeight="0.49107143" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41477272" sideWeight="0.5089286" order="7" side_tool="true" content_ui="tabs" />
@@ -331,47 +358,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/nugetory.tests/Integration/RootControllerTests.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory/Manager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory.tests/Integration/RootControllerTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory.tests/SetUp.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory.tests/Integration/RootControllerTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory.tests/Integration/RootControllerTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="390">
           <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -387,7 +375,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -584,28 +571,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory/Data/File/FileStoreFilesystem.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="49" column="9" selection-start-line="49" selection-start-column="9" selection-end-line="49" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nugetory.tests/Class1.cs" />
-    <entry file="file://$PROJECT_DIR$/nugetory/Configuration/Store.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="43" column="98" selection-start-line="43" selection-start-column="97" selection-end-line="43" selection-end-column="98" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory/Configuration/ConfigDefaults.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nugetory/Startup.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -642,20 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory.tests/SetUp.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nugetory/Manager.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="20" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nugetory/Endpoint/OwinHost.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -667,7 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -675,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
           <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -683,7 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="338">
           <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -691,6 +640,85 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-416">
           <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Data/File/FileStoreFilesystem.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Data/File/FileStoreMemory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="39">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Data/DB/JSONMemoryStore.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Data/DB/JSONStore.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Configuration/Store.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Configuration/ConfigDefaults.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Logging/LogFactory.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="11" column="27" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Data/DataManager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="30" column="68" selection-start-line="30" selection-start-column="68" selection-end-line="30" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory/Manager.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nugetory.tests/SetUp.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>

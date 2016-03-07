@@ -119,12 +119,14 @@
     <Compile Include="Data\DAO\PackageDAO.cs" />
     <Compile Include="Data\DataManager.cs" />
     <Compile Include="Data\DB\ICollection.cs" />
+    <Compile Include="Data\DB\JSONMemoryStore.cs" />
     <Compile Include="Data\DB\JSONStore.cs" />
     <Compile Include="Data\Entities\FrameworkAssembly.cs" />
     <Compile Include="Data\Entities\IBaseEntity.cs" />
     <Compile Include="Data\Entities\Package.cs" />
     <Compile Include="Data\Entities\PackageDependency.cs" />
     <Compile Include="Data\File\FileStoreFilesystem.cs" />
+    <Compile Include="Data\File\FileStoreMemory.cs" />
     <Compile Include="Data\File\IFileStore.cs" />
     <Compile Include="Endpoint\ExceptionFilter.cs" />
     <Compile Include="Endpoint\OwinHost.cs" />

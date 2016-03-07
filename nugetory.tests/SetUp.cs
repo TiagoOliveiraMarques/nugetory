@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using nugetory.Data;
+using NUnit.Framework;
 
 namespace nugetory.tests
 {
@@ -10,9 +11,11 @@ namespace nugetory.tests
         public void OneTimeSetUp()
         {
             Logging.LogFactory.ForceConsoleMode = true;
+            DataManager.DataInMemory = true;
 
             // start nugetory server
             _manager = new Manager();
+
             _manager.Start();
         }
 

@@ -19,16 +19,13 @@ namespace nugetory.Configuration
         // --- DATABASE
 
         private static readonly string DefaultDatabaseDirectory = OSEnvironment.IsUnix
-                                                                      ? "/srv/nugetory/"
-                                                                      : @"C:\ProgramData\nugetory\";
+            ? "/srv/nugetory/"
+            : @"C:\ProgramData\nugetory\";
 
         public static ConfigItemDefaults<string> DatabaseFile = new ConfigItemDefaults<string>("DATABASE", "FILE",
-                                                                                               DefaultDatabaseDirectory +
-                                                                                               "config.json");
+            DefaultDatabaseDirectory + "config.json");
 
         public static ConfigItemDefaults<string> DatabasePackagesDirectory = new ConfigItemDefaults<string>("DATABASE",
-                                                                                                            "PACKAGES",
-                                                                                                            DefaultDatabaseDirectory +
-                                                                                                            "packages");
+            "PACKAGES", DefaultDatabaseDirectory + "packages");
     }
 }
