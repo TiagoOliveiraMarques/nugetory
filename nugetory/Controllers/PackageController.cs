@@ -12,10 +12,5 @@ namespace nugetory.Controllers
         {
             return WorkspaceRoot.GetWorkspace(Request);
         }
-
-        public HttpResponseMessage Put()
-        {
-            return UploadPackage.Process(Request);
-        }
     }
 }

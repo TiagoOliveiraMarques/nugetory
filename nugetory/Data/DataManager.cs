@@ -15,7 +15,7 @@ namespace nugetory.Data
 
         public static bool DataInMemory { get; set; }
         private Store ConfigurationStore { get; set; }
-        internal PackageDAO PackageDAO { get; set; }
+        public PackageDAO PackageDAO { get; set; }
         internal ICollection<Package> PackageCollection { get; set; }
         internal IFileStore FileStore { get; set; }
 

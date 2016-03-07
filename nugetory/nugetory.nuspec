@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>nugetory</id>
-    <version>0.1.2</version>
+    <version>0.1.3</version>
     <title>nugetory</title>
     <authors>abelsilva</authors>
     <owners>abelsilva</owners>
@@ -10,11 +10,11 @@
     <projectUrl>http://github.com/abelsilva/nugetory/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Nuget repository</description>
-    <releaseNotes>Allow start server in daemon mode and stop with signals</releaseNotes>
+    <releaseNotes>Changed multipart parser due to bugs in nuget on linux</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>nuget repository .net c#</tags>
   </metadata>
   <files>
-    <file src="bin\Release\**" exclude="bin\Release\*vshost*" target="" />
+    <file src="bin/Release/**" exclude="bin/Release/*vshost*" target="" />
   </files>
 </package>

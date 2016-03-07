@@ -7,12 +7,12 @@ using NUnit.Framework;
 namespace nugetory.tests.Integration
 {
     [TestFixture]
-    public class RootControllerTests
+    public class RootControllerGetTests
     {
         private const string InvokeUrl = "http://localhost:9000/api/v2";
 
-        [Category("nugetory.Integration.RootController"), Test, Timeout(1000)]
-        public void RootControllerTest()
+        [Category("nugetory.Integration.RootControllerGet"), Test, Timeout(1000)]
+        public void RootControllerGetTest()
         {
             string response;
             HttpStatusCode responseCode = HttpClient.Invoke(InvokeUrl, "GET", out response);

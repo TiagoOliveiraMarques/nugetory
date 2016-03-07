@@ -6,7 +6,7 @@ namespace nugetory.tests
     [SetUpFixture]
     public class SetUp
     {
-        private static Manager _manager;
+        internal static Manager Manager;
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -14,16 +14,16 @@ namespace nugetory.tests
             DataManager.DataInMemory = true;
 
             // start nugetory server
-            _manager = new Manager();
+            Manager = new Manager();
 
-            _manager.Start();
+            Manager.Start();
         }
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {
             // stop nugetory server
-            _manager.Stop();
+            Manager.Stop();
         }
     }
 }

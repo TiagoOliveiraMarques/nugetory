@@ -11,7 +11,7 @@ namespace nugetory
         private readonly ILogger _log;
 
         public Store ConfigurationStore { get; private set; }
-        private DataManager DataManager { get; set; }
+        public DataManager DataManager { get; set; }
 
         public Manager()
         {

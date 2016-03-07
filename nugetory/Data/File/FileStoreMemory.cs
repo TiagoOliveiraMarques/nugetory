@@ -32,12 +32,11 @@ namespace nugetory.Data.File
                     ms.Write(buffer, 0, read);
                 }
                 PackagesCollection.Add(packageFilename, ms.ToArray());
-            }
 
-            using (SHA512 sha512 = SHA512.Create())
-            using (FileStream stream = System.IO.File.OpenRead(packageFilename))
-            {
-                checksum = Convert.ToBase64String(sha512.ComputeHash(stream));
+                using (SHA512 sha512 = SHA512.Create())
+                {
+                    checksum = Convert.ToBase64String(sha512.ComputeHash(ms));
+                }
             }
 
             return checksum;
