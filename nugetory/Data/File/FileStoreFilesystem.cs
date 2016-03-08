@@ -23,7 +23,7 @@ namespace nugetory.Data.File
                 Directory.CreateDirectory(PackagesDirectory);
         }
 
-        public string SaveFile(Stream originalFilename, string id)
+        public string SaveFile(Stream uploadStream, string id)
         {
             string checksum;
             string packageFilename = GetPackageFileLocation(id);
@@ -34,7 +34,7 @@ namespace nugetory.Data.File
             // allow exception to be thrown in case of error
             using (FileStream fs = new FileStream(packageFilename, FileMode.Create, FileAccess.Write))
             {
-                originalFilename.CopyTo(fs);
+                uploadStream.CopyTo(fs);
             }
 
             using (SHA512 sha512 = SHA512.Create())
@@ -53,10 +53,10 @@ namespace nugetory.Data.File
             if (!System.IO.File.Exists(packageFilename))
                 return null;
 
-            using (MD5 md5 = MD5.Create())
+            using (SHA512 sha512 = SHA512.Create())
             using (FileStream stream = System.IO.File.OpenRead(packageFilename))
             {
-                if (Convert.ToBase64String(md5.ComputeHash(stream)) != checksum)
+                if (Convert.ToBase64String(sha512.ComputeHash(stream)) != checksum)
                     return null;
             }
 
@@ -89,7 +89,7 @@ namespace nugetory.Data.File
 
         public static string GetPackageFileName(string filename)
         {
-            return filename + ".nupkg";
+            return filename.ToLowerInvariant() + ".nupkg";
         }
     }
 }

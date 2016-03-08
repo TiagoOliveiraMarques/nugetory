@@ -5,14 +5,19 @@ using System.Net.Http;
 using System.Web.Http;
 using nugetory.Controllers.Helpers;
 using nugetory.Exceptions;
+using nugetory.Logging;
 
 namespace nugetory.Controllers
 {
     public class FindPackageController : ApiController
     {
+        private static readonly ILogger Log = LogFactory.Instance.GetLogger(typeof(FindPackageController));
+
         [AllowAnonymous]
         public HttpResponseMessage Get()
         {
+            Log.Submit(LogLevel.Debug, "GET request received");
+
             Dictionary<string, string> queryParams =
                 Request.GetQueryNameValuePairs()
                        .ToDictionary(reqQueryParam => reqQueryParam.Key.ToLowerInvariant(),
@@ -40,7 +45,9 @@ namespace nugetory.Controllers
             top = top != null ? top.Trim(' ', '\'') : null;
             id = id != null ? id.Trim(' ', '\'') : null;
 
-            return FindPackage.Find(Request, filter, orderby, desc, top, id);
+            HttpResponseMessage response = FindPackage.Find(Request, filter, orderby, desc, top, id);
+            Log.Submit(LogLevel.Debug, "GET response ready");
+            return response;
         }
     }
 }
