@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nugetory", "nugetory\nugetory.csproj", "{92DFF1B3-0DB5-490F-B85F-DE99D9B8CF94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nugetory.tests", "/Users/abelsilva/workspace/git/nugetory/nugetory.tests/nugetory.tests.csproj", "{1BDFBCB6-49E1-415A-9621-0E02E2D42F21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nugetory.tests", "nugetory.tests\nugetory.tests.csproj", "{1BDFBCB6-49E1-415A-9621-0E02E2D42F21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
