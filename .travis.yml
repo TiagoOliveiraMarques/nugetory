@@ -11,5 +11,4 @@ script:
   - export DATABASE_FILE=/tmp/nugetory/db.json
   - export DATABASE_PACKAGES=/tmp/nugetory/packages
   - mkdir /tmp/nugetory
-  - find .
   - mono ./testrunner/NUnit.ConsoleRunner/tools/nunit3-console.exe ./nugetory.tests/bin/Release/nugetory.tests.dll --labels=On --nocolor --verbose --workers=1 --full --result:"./nunit-result.xml;format=nunit2"
