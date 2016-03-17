@@ -4,8 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http;
 using HttpMultipartParser;
 using nugetory.Data.DAO;
@@ -16,7 +14,7 @@ namespace nugetory.Controllers.Helpers
 {
     public static class UploadPackage
     {
-        private static readonly ILogger Log = LogFactory.Instance.GetLogger(typeof(UploadPackage));
+        private static readonly ILogger Log = LogFactory.Instance.GetLogger(typeof (UploadPackage));
         public static PackageDAO PackageDAO { get; set; }
 
         public static HttpResponseMessage Process(HttpRequestMessage request)
@@ -44,7 +42,7 @@ namespace nugetory.Controllers.Helpers
                     Log.Submit(LogLevel.Debug, "Header " + header.Key + ": " + string.Join(",", header.Value));
                 }
 
-                var parser = new MultipartFormDataParser(tempStream);
+                MultipartFormDataParser parser = new MultipartFormDataParser(tempStream);
 
                 // This illustrates how to get the file names.
                 FilePart file = parser.Files.FirstOrDefault();

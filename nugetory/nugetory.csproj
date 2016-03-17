@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>nugetory</RootNamespace>
     <AssemblyName>nugetory</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -36,8 +37,9 @@
     <StartupObject>nugetory.Startup</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HttpMultipartParser, Version=1.1.5.0, Culture=neutral, PublicKeyToken=6d293681fa6c7a03">
+    <Reference Include="HttpMultipartParser, Version=1.1.5.0, Culture=neutral, PublicKeyToken=6d293681fa6c7a03, processorArchitecture=MSIL">
       <HintPath>..\packages\HttpMultipartParser.2.1.3\lib\net40\HttpMultipartParser.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
@@ -107,10 +109,12 @@
     <Compile Include="Controllers\Helpers\FindPackage.cs" />
     <Compile Include="Controllers\Helpers\DeletePackage.cs" />
     <Compile Include="Controllers\Helpers\DownloadPackage.cs" />
+    <Compile Include="Controllers\Helpers\Metadata.cs" />
     <Compile Include="Controllers\Helpers\PackageDetails.cs" />
     <Compile Include="Controllers\Helpers\UploadPackage.cs" />
     <Compile Include="Controllers\Helpers\WorkspaceRoot.cs" />
     <Compile Include="Controllers\FindPackageController.cs" />
+    <Compile Include="Controllers\MetadataController.cs" />
     <Compile Include="Controllers\PackageDownloadController.cs" />
     <Compile Include="Controllers\PackageDetailsController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
@@ -155,7 +159,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="nugetory.nuspec" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.txt" />

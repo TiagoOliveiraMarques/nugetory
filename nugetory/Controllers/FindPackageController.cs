@@ -31,7 +31,7 @@ namespace nugetory.Controllers
             string top = getParam("$top");
             string id = getParam("id");
 
-            if (orderby.Contains(" "))
+            if (orderby != null && orderby.Contains(" "))
             {
                 string[] orderBySplit = orderby.Split(' ');
                 if (orderBySplit.Length != 2)

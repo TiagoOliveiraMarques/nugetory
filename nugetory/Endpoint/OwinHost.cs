@@ -58,6 +58,8 @@ namespace nugetory.Endpoint
         {
             routes.MapHttpRoute("ApiV2Root", "api/v2", new {controller = "root"});
 
+            routes.MapHttpRoute("ApiV2Metadata", "api/v2/$metadata", new {controller = "metadata"});
+
             routes.MapHttpRoute("ApiV2Package", "api/v2/package", new {controller = "package"});
 
             routes.MapHttpRoute("ApiV2Packages", "api/v2/Packages(Id='{id}',Version='{version}')",
