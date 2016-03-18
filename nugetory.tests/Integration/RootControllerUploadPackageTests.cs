@@ -24,7 +24,7 @@ namespace nugetory.tests.Integration
 
         public static PackageDAO PackageDAO { get; set; }
 
-        [Category("nugetory.Integration.RootControllerUploadPackage"), Test, Timeout(1000)]
+        [Category("nugetory.Integration.RootControllerUploadPackage"), Test]//, Timeout(1000)]
         public void RootControllerUploadPackageNoApiKeySuccessTest()
         {
             ValidateAuthenticationAttribute.ApiKey = null;
@@ -41,6 +41,7 @@ namespace nugetory.tests.Integration
             Assert.NotNull(pkg);
             Assert.AreEqual("nugetory", pkg.Title);
             Assert.AreEqual("0.0.0", pkg.Version);
+            Assert.IsTrue(pkg.LatestVersion);
 
             package = NugetSamplePackages.nugetoryV001;
             request = Convert.FromBase64String(package.Base64Post);
@@ -57,6 +58,8 @@ namespace nugetory.tests.Integration
             Assert.AreEqual("nugetory", pkg2.Title);
             Assert.AreEqual("0.0.0", pkg1.Version);
             Assert.AreEqual("0.0.1", pkg2.Version);
+            Assert.IsFalse(pkg1.LatestVersion);
+            Assert.IsTrue(pkg2.LatestVersion);
 
             PackageDAO.Delete(pkg1.Id);
             PackageDAO.FileStore.DeleteFile(pkg1.Id);
@@ -81,6 +84,7 @@ namespace nugetory.tests.Integration
             Assert.NotNull(pkg);
             Assert.AreEqual("nugetory", pkg.Title);
             Assert.AreEqual("0.0.0", pkg.Version);
+            Assert.IsTrue(pkg.LatestVersion);
 
             package = NugetSamplePackages.nugetoryV001;
             request = Convert.FromBase64String(package.Base64Post);
@@ -97,6 +101,8 @@ namespace nugetory.tests.Integration
             Assert.AreEqual("nugetory", pkg2.Title);
             Assert.AreEqual("0.0.0", pkg1.Version);
             Assert.AreEqual("0.0.1", pkg2.Version);
+            Assert.IsFalse(pkg1.LatestVersion);
+            Assert.IsTrue(pkg2.LatestVersion);
 
             PackageDAO.Delete(pkg1.Id);
             PackageDAO.FileStore.DeleteFile(pkg1.Id);

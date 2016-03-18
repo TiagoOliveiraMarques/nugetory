@@ -100,7 +100,7 @@ namespace nugetory.Data.DAO
 
                     if (previousPackages.Any())
                     {
-                        foreach (Package p in previousPackages.Where(p => p.LatestVersion == false))
+                        foreach (Package p in previousPackages.Where(p => p.LatestVersion))
                         {
                             p.LatestVersion = false;
                             Update(p).Wait();

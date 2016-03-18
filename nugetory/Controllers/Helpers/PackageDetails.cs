@@ -47,6 +47,9 @@ namespace nugetory.Controllers.Helpers
 
         public static entry GetPackageEntry(Package package, Uri uri)
         {
+            if (package == null)
+                return null;
+
             string baseUri = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
             string apiUri = baseUri + "/api/v2/";
 

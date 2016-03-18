@@ -22,10 +22,12 @@ namespace nugetory.Controllers.Helpers
 
             string title = id.ToLowerInvariant();
             List<Package> packages = PackageDAO.Read(p => p.Title.ToLowerInvariant() == title).Result;
-            entry[] entries = packages.Select(p => PackageDetails.GetPackageEntry(p, uri)).ToArray();
+            entry[] entries = filter == "IsLatestVersion"
+                ? new[] {PackageDetails.GetPackageEntry(packages.FirstOrDefault(p => p.LatestVersion), uri)}
+                : packages.Select(p => PackageDetails.GetPackageEntry(p, uri)).ToArray();
             DateTime updated = packages.Any()
-                                   ? packages.OrderByDescending(p => p.DateUpdated).First().DateUpdated
-                                   : DateTime.UtcNow;
+                ? packages.OrderByDescending(p => p.DateUpdated).First().DateUpdated
+                : DateTime.UtcNow;
 
             string baseUri = uri.Scheme + "://" + uri.Host + ":" + uri.Port;
             string apiUri = baseUri + "/api/v2/";
@@ -39,8 +41,8 @@ namespace nugetory.Controllers.Helpers
                 link = new feedLink("FindPackagesById", "FindPackagesById"),
                 entry = entries
             };
-            
-            XmlSerializer serializer = new XmlSerializer(typeof(feed));
+
+            XmlSerializer serializer = new XmlSerializer(typeof (feed));
             MemoryStream ms = new MemoryStream();
             serializer.Serialize(ms, feed);
             ms.Position = 0;
