@@ -82,6 +82,9 @@ namespace nugetory.Tools
 
         [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
         public string Language { get; set; }
+        
+        [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
+        public LastUpdated LastUpdated { get; set; }
 
         [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
         public Published Published { get; set; }
@@ -109,9 +112,18 @@ namespace nugetory.Tools
 
         [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
         public string Tags { get; set; }
-
+        
         [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
         public string Title { get; set; }
+
+        [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
+        public string Summary { get; set; }
+
+        [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
+        public string Authors { get; set; }
+
+        [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
+        public string Id { get; set; }
 
         [XmlElement(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
         public VersionDownloadCount VersionDownloadCount { get; set; }
@@ -256,7 +268,7 @@ namespace nugetory.Tools
         [XmlText]
         public bool Value { get; set; }
     }
-
+    
     /// <remarks />
     [XmlType(AnonymousType = true, Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
     [XmlRoot(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices", IsNullable = false)]
@@ -267,6 +279,31 @@ namespace nugetory.Tools
         }
 
         public Published(string date)
+        {
+            type = "Edm.DateTime";
+            Value = date;
+        }
+
+        /// <remarks />
+        [XmlAttribute(Form = XmlSchemaForm.Qualified,
+            Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices/metadata")]
+        public string type { get; set; }
+
+        /// <remarks />
+        [XmlText]
+        public string Value { get; set; }
+    }
+
+    /// <remarks />
+    [XmlType(AnonymousType = true, Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices")]
+    [XmlRoot(Namespace = "http://schemas.microsoft.com/ado/2007/08/dataservices", IsNullable = false)]
+    public class LastUpdated
+    {
+        public LastUpdated()
+        {
+        }
+
+        public LastUpdated(string date)
         {
             type = "Edm.DateTime";
             Value = date;
@@ -451,6 +488,12 @@ namespace nugetory.Tools
         public entryCategory()
         {
             term = "NuGetGallery.V2FeedPackage";
+            scheme = "http://schemas.microsoft.com/ado/2007/08/dataservices/scheme";
+        }
+
+        public entryCategory(string term)
+        {
+            this.term = term;
             scheme = "http://schemas.microsoft.com/ado/2007/08/dataservices/scheme";
         }
 

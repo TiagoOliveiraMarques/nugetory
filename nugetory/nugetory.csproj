@@ -106,6 +106,8 @@
     <Compile Include="Console\IConsole.cs" />
     <Compile Include="Console\UnixConsole.cs" />
     <Compile Include="Console\WindowsConsole.cs" />
+    <Compile Include="Controllers\Helpers\Search.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\Helpers\FindPackage.cs" />
     <Compile Include="Controllers\Helpers\DeletePackage.cs" />
     <Compile Include="Controllers\Helpers\DownloadPackage.cs" />
@@ -155,6 +157,7 @@
     <Compile Include="Tools\Nuspec.cs" />
     <Compile Include="Tools\OSEnvironment.cs" />
     <Compile Include="Tools\PackageDetails.cs" />
+    <Compile Include="Tools\SeachFeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

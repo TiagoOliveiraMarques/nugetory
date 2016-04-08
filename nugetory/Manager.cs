@@ -55,6 +55,7 @@ namespace nugetory
             DeletePackage.PackageDAO = DataManager.PackageDAO;
             DeletePackage.FileStore = DataManager.FileStore;
             FindPackage.PackageDAO = DataManager.PackageDAO;
+            Search.PackageDAO = DataManager.PackageDAO;
 
             _log.Submit(LogLevel.Info, "Environment setup finished");
 

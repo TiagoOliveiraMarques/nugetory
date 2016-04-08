@@ -34,7 +34,7 @@ namespace nugetory.Controllers.Helpers
                 tempStream.Seek(0, SeekOrigin.End);
                 Log.Submit(LogLevel.Debug, "Upload request has " + tempStream.Length + " bytes");
                 tempStream.Position = 0;
-
+                
                 StreamContent streamContent = new StreamContent(tempStream);
                 foreach (KeyValuePair<string, IEnumerable<string>> header in request.Content.Headers)
                 {

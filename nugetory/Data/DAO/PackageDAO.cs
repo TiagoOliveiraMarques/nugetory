@@ -8,17 +8,21 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using nugetory.Data.Entities;
 using nugetory.Data.File;
+using nugetory.Exceptions;
+using nugetory.Logging;
 using nugetory.Tools;
 
 namespace nugetory.Data.DAO
 {
     public class PackageDAO : BaseDAO<Package>
     {
+        public ILogger Logger { get; set; }
         public IFileStore FileStore { get; set; }
 
         public PackageDAO(DB.ICollection<Package> entities, IFileStore fileStore)
             : base(entities)
         {
+            Logger = LogFactory.Instance.GetLogger(GetType());
             FileStore = fileStore;
         }
 
@@ -98,12 +102,12 @@ namespace nugetory.Data.DAO
                 {
                     entity.LatestVersion = true;
 
-                    if (previousPackages.Any())
+                    foreach (Package p in previousPackages.Where(p => p.LatestVersion))
                     {
-                        foreach (Package p in previousPackages.Where(p => p.LatestVersion))
+                        if (!UpdateLatestVersion(p.Title, p.Version, false).Result)
                         {
-                            p.LatestVersion = false;
-                            Update(p).Wait();
+                            Logger.Submit(LogLevel.Error, "Could not remove flag 'latestVersion' of existing packages!");
+                            throw new InternalServerErrorException();
                         }
                     }
                 }
@@ -146,6 +150,18 @@ namespace nugetory.Data.DAO
             entity.DateUpdated = DateTime.UtcNow;
 
             return base.Update(entity);
+        }
+
+        public Task<bool> UpdateLatestVersion(string title, string version, bool latestVersion)
+        {
+            string id = GetId(title, version);
+            Package origEntity = Read(id).Result;
+
+            origEntity.LatestVersion = latestVersion;
+
+            origEntity.DateUpdated = DateTime.UtcNow;
+
+            return base.Update(origEntity);
         }
 
         public override Task<bool> Delete(string id)

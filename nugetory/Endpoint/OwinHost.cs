@@ -20,7 +20,7 @@ namespace nugetory.Endpoint
 
         static OwinHost()
         {
-            Log = LogFactory.Instance.GetLogger(typeof(OwinHost));
+            Log = LogFactory.Instance.GetLogger(typeof (OwinHost));
         }
 
         public static void Start(int port, string apiKey)
@@ -63,16 +63,19 @@ namespace nugetory.Endpoint
             routes.MapHttpRoute("ApiV2Package", "api/v2/package", new {controller = "package"});
 
             routes.MapHttpRoute("ApiV2Packages", "api/v2/Packages(Id='{id}',Version='{version}')",
-                                new {controller = "packageDetails"});
+                new {controller = "packageDetails"});
 
             routes.MapHttpRoute("ApiV2PackageDetails", "api/v2/package/{id}/{version}",
-                                new {controller = "packageDownload"});
+                new {controller = "packageDownload"});
 
             routes.MapHttpRoute("ApiV2FindPackagesById", "api/v2/FindPackagesById()",
-                                new {controller = "findPackage"});
+                new {controller = "findPackage"});
+
+            routes.MapHttpRoute("ApiV2Search", "api/v2/Search()",
+                new {controller = "search"});
 
             routes.MapHttpRoute("ApiV2PackageDelete", "api/v2/{id}/{version}",
-                                new {controller = "packageDetails"});
+                new {controller = "packageDetails"});
         }
 
         private static void ConfigureJson(BaseJsonMediaTypeFormatter jsonFormatter)

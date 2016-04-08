@@ -98,37 +98,6 @@ namespace nugetory.Data.DB
             }
         }
 
-        //public Task<bool> Create(T[] items)
-        //{
-        //    try
-        //    {
-        //        List<T> entities;
-        //        if (System.IO.File.Exists(Filename))
-        //        {
-        //            using (StreamReader file = System.IO.File.OpenText(Filename))
-        //            {
-        //                JsonSerializer serializer = new JsonSerializer();
-        //                entities = ((T[]) serializer.Deserialize(file, typeof(T[]))).ToList();
-        //            }
-        //        }
-        //        else
-        //            entities = new List<T>();
-
-        //        entities.AddRange(items);
-
-        //        using (StreamWriter file = System.IO.File.CreateText(Filename))
-        //        {
-        //            JsonSerializer serializer = new JsonSerializer();
-        //            serializer.Serialize(file, entities.ToArray());
-        //        }
-        //        return Task.FromResult(true);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return Task.FromResult(false);
-        //    }
-        //}
-
         public Task<List<T>> Read()
         {
             try
@@ -227,40 +196,7 @@ namespace nugetory.Data.DB
                 return Task.FromResult(false);
             }
         }
-
-        //public Task<bool> Update(T[] items)
-        //{
-        //    try
-        //    {
-        //        if (!System.IO.File.Exists(Filename))
-        //            return Task.FromResult(false);
-
-        //        List<T> entities;
-        //        using (StreamReader file = System.IO.File.OpenText(Filename))
-        //        {
-        //            JsonSerializer serializer = new JsonSerializer();
-        //            entities = ((T[]) serializer.Deserialize(file, typeof(T[]))).ToList();
-        //        }
-
-        //        if (entities.RemoveAll(e => items.Any(i => i.Id == e.Id)) == items.LongLength)
-        //        {
-        //            entities.AddRange(items);
-
-        //            using (StreamWriter file = System.IO.File.CreateText(Filename))
-        //            {
-        //                JsonSerializer serializer = new JsonSerializer();
-        //                serializer.Serialize(file, entities.ToArray());
-        //            }
-        //            return Task.FromResult(true);
-        //        }
-        //        return Task.FromResult(false);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return Task.FromResult(false);
-        //    }
-        //}
-
+        
         public Task<bool> Delete(string id)
         {
             try
@@ -291,73 +227,5 @@ namespace nugetory.Data.DB
                 return Task.FromResult(false);
             }
         }
-
-        //public Task<bool> Delete(string[] ids)
-        //{
-        //    try
-        //    {
-        //        if (!System.IO.File.Exists(Filename))
-        //            return Task.FromResult(true);
-
-        //        List<T> entities;
-        //        using (StreamReader file = System.IO.File.OpenText(Filename))
-        //        {
-        //            JsonSerializer serializer = new JsonSerializer();
-        //            entities = ((T[]) serializer.Deserialize(file, typeof(T[]))).ToList();
-        //        }
-
-        //        if (entities.RemoveAll(e => ids.Any(id => e.Id == id)) == ids.LongLength)
-        //        {
-        //            using (StreamWriter file = System.IO.File.CreateText(Filename))
-        //            {
-        //                JsonSerializer serializer = new JsonSerializer();
-        //                serializer.Serialize(file, entities.ToArray());
-        //            }
-        //            return Task.FromResult(true);
-        //        }
-        //        return Task.FromResult(false);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return Task.FromResult(false);
-        //    }
-        //}
-
-        //public Task<long> Delete(Func<T, bool> filter)
-        //{
-        //    try
-        //    {
-        //        if (!System.IO.File.Exists(Filename))
-        //            return Task.FromResult(0L);
-
-        //        List<T> entities;
-        //        using (StreamReader file = System.IO.File.OpenText(Filename))
-        //        {
-        //            JsonSerializer serializer = new JsonSerializer();
-        //            entities = ((T[]) serializer.Deserialize(file, typeof(T[]))).ToList();
-        //        }
-
-        //        List<T> entitiesToRemove = entities.Where(filter).ToList();
-        //        int removedEntities = entities.RemoveAll(e => entitiesToRemove.Contains(e));
-
-        //        if (!entitiesToRemove.Any())
-        //            return Task.FromResult(-1L);
-
-        //        if (entitiesToRemove.Count() == removedEntities)
-        //        {
-        //            using (StreamWriter file = System.IO.File.CreateText(Filename))
-        //            {
-        //                JsonSerializer serializer = new JsonSerializer();
-        //                serializer.Serialize(file, entities.ToArray());
-        //            }
-        //            return Task.FromResult((long) removedEntities);
-        //        }
-        //        return Task.FromResult(-1L);
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return Task.FromResult(-1L);
-        //    }
-        //}
     }
 }
