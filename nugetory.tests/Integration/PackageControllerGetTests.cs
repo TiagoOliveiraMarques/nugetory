@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace nugetory.tests.Integration
 {
     [TestFixture]
-    public class RootControllerGetTests
+    public class PackageControllerGetTests
     {
         private const string InvokeUrl = "http://localhost:9000/api/v2";
 
@@ -18,14 +18,14 @@ namespace nugetory.tests.Integration
             HttpClient.ApiKey = null;
         }
 
-        [Category("nugetory.Integration.RootControllerGet"), Test, Timeout(1000)]
-        public void RootControllerGetTest()
+        [Category("nugetory.Integration.PackageControllerGet"), Test, Timeout(1000)]
+        public void PackageControllerGetTest()
         {
             string response;
-            HttpStatusCode responseCode = HttpClient.Invoke(InvokeUrl, "GET", out response);
+            HttpStatusCode responseCode = HttpClient.Invoke(InvokeUrl + "/package", "GET", out response);
 
             Assert.AreEqual(HttpStatusCode.OK, responseCode);
-            Assert.AreEqual(WorkspaceRoot.GetWorkspaceContent(InvokeUrl), response);
+            Assert.AreEqual(WorkspaceRoot.GetWorkspaceContent(InvokeUrl + "/package"), response);
         }
     }
 }

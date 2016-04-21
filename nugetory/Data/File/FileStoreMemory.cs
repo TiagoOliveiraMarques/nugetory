@@ -23,7 +23,7 @@ namespace nugetory.Data.File
             if (PackagesCollection.ContainsKey(packageFilename))
                 throw new AlreadyExistsException();
 
-            byte[] buffer = new byte[16*1024];
+            byte[] buffer = new byte[16 * 1024];
             using (MemoryStream ms = new MemoryStream())
             {
                 int read;
@@ -33,6 +33,7 @@ namespace nugetory.Data.File
                 }
                 PackagesCollection.Add(packageFilename, ms.ToArray());
 
+                ms.Position = 0;
                 using (SHA512 sha512 = SHA512.Create())
                 {
                     checksum = Convert.ToBase64String(sha512.ComputeHash(ms));
@@ -51,16 +52,17 @@ namespace nugetory.Data.File
 
             byte[] packageBytes = PackagesCollection[packageFilename];
 
-            using (MD5 md5 = MD5.Create())
+            using (SHA512 sha512 = SHA512.Create())
             {
                 MemoryStream ms = new MemoryStream();
 
                 ms.Write(packageBytes, 0, packageBytes.Length);
                 ms.Position = 0;
 
-                if (Convert.ToBase64String(md5.ComputeHash(ms)) != checksum)
+                if (Convert.ToBase64String(sha512.ComputeHash(ms)) != checksum)
                     return null;
 
+                ms.Position = 0;
                 return ms;
             }
         }

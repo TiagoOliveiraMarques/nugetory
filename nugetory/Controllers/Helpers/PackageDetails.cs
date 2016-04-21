@@ -70,7 +70,7 @@ namespace nugetory.Controllers.Helpers
                 },
                 title = new entryTitle(package.Title),
                 summary = new entrySummary(package.Description),
-                updated = package.DateUpdated.ToString("o"),
+                updated = package.DateUpdated.ToString("O"),
                 author = new entryAuthor(package.Authors),
                 content = new entryContent(apiUri + "package/" + package.Title + "/" + package.Version),
                 properties = new properties

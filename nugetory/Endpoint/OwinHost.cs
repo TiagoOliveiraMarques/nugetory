@@ -20,7 +20,7 @@ namespace nugetory.Endpoint
 
         static OwinHost()
         {
-            Log = LogFactory.Instance.GetLogger(typeof (OwinHost));
+            Log = LogFactory.Instance.GetLogger(typeof(OwinHost));
         }
 
         public static void Start(int port, string apiKey)
@@ -56,26 +56,26 @@ namespace nugetory.Endpoint
 
         private static void ConfigureRoutes(HttpRouteCollection routes)
         {
-            routes.MapHttpRoute("ApiV2Root", "api/v2", new {controller = "root"});
+            routes.MapHttpRoute("ApiV2Root", "api/v2", new { controller = "root" });
 
-            routes.MapHttpRoute("ApiV2Metadata", "api/v2/$metadata", new {controller = "metadata"});
+            routes.MapHttpRoute("ApiV2Metadata", "api/v2/$metadata", new { controller = "metadata" });
 
-            routes.MapHttpRoute("ApiV2Package", "api/v2/package", new {controller = "package"});
+            routes.MapHttpRoute("ApiV2Package", "api/v2/package", new { controller = "package" });
 
             routes.MapHttpRoute("ApiV2Packages", "api/v2/Packages(Id='{id}',Version='{version}')",
-                new {controller = "packageDetails"});
+                new { controller = "packageDetails" });
 
             routes.MapHttpRoute("ApiV2PackageDetails", "api/v2/package/{id}/{version}",
-                new {controller = "packageDownload"});
+                new { controller = "packageDownload" });
 
             routes.MapHttpRoute("ApiV2FindPackagesById", "api/v2/FindPackagesById()",
-                new {controller = "findPackage"});
+                new { controller = "findPackage" });
 
             routes.MapHttpRoute("ApiV2Search", "api/v2/Search()",
-                new {controller = "search"});
+                new { controller = "search" });
 
             routes.MapHttpRoute("ApiV2PackageDelete", "api/v2/{id}/{version}",
-                new {controller = "packageDetails"});
+                new { controller = "packageDetails" });
         }
 
         private static void ConfigureJson(BaseJsonMediaTypeFormatter jsonFormatter)
@@ -91,10 +91,10 @@ namespace nugetory.Endpoint
         private static void ConfigureFilters(HttpFilterCollection filters, string apiKey)
         {
             filters.Add(new ExceptionFilter());
+            filters.Add(new ValidateAuthenticationAttribute());
             if (!string.IsNullOrEmpty(apiKey))
             {
                 ValidateAuthenticationAttribute.ApiKey = apiKey;
-                filters.Add(new ValidateAuthenticationAttribute());
             }
         }
     }

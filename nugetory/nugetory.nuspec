@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>nugetory</id>
-    <version>0.1.8</version>
+    <version>0.1.9</version>
     <title>nugetory</title>
     <authors>abelsilva</authors>
     <owners>abelsilva</owners>
@@ -10,7 +10,7 @@
     <projectUrl>http://github.com/abelsilva/nugetory/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Nuget repository</description>
-    <releaseNotes>search function and fix issue for latest version when updating packages</releaseNotes>
+    <releaseNotes>minor issues fixes and unit tests</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>nuget repository .net c#</tags>
   </metadata>

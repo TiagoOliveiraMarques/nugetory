@@ -9,6 +9,8 @@ namespace nugetory.tests.Support
 {
     public static class HttpClient
     {
+        public static string ApiKey { get; set; }
+
         internal static HttpStatusCode Invoke(string url, string method, out string responseData)
         {
             return Invoke(url, method, null, out responseData, null, 0);
@@ -55,8 +57,8 @@ namespace nugetory.tests.Support
             request.Method = method;
             request.ProtocolVersion = Version.Parse("1.0");
 
-            if (!string.IsNullOrEmpty(ValidateAuthenticationAttribute.ApiKey))
-                request.Headers.Add("X-Nuget-ApiKey", ValidateAuthenticationAttribute.ApiKey);
+            if (!string.IsNullOrEmpty(ApiKey))
+                request.Headers.Add("X-Nuget-ApiKey", ApiKey);
 
             if (requestData != null)
             {
