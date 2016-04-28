@@ -102,9 +102,7 @@ namespace nugetory.tests.Integration
 
             NugetPackage packageV000 = NugetSamplePackages.nugetoryV000;
             byte[] request = Convert.FromBase64String(packageV000.Base64Post);
-
-            string strRequest = Encoding.ASCII.GetString(request);
-
+            
             HttpStatusCode responseCode = HttpClient.Invoke(InvokeUrl, "PUT", request, packageV000.ContentType,
                 packageV000.ContentLength);
 
