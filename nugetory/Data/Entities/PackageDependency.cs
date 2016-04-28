@@ -17,12 +17,18 @@ namespace nugetory.Data.Entities
             Id = id;
             Version = version;
         }
-
-        public static PackageDependency[] Process(packageMetadataDependency[] dependencies)
+        
+        public static PackageDependency[] Process(packageMetadataDependencies dependencies)
         {
-            return dependencies == null
-                       ? null
-                       : dependencies.ToList().Select(d => new PackageDependency(d.id, d.version)).ToArray();
+            if (dependencies == null)
+                return null;
+            
+            // This is non standard behaviour. The nuspec should NOT have both grouped and ungrouped dependencies.
+            // In case of both existing, just ignore the ungrouped ones.
+            if (dependencies.group != null)
+                return dependencies.group.SelectMany(g => g.dependency).Select(d => new PackageDependency(d.id, d.version)).ToArray();
+
+            return dependencies.dependency.Select(d => new PackageDependency(d.id, d.version)).ToArray();
         }
     }
 }

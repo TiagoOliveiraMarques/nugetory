@@ -54,9 +54,9 @@ namespace nugetory.Tools
         private string languageField;
 
         private string tagsField;
-
-        private packageMetadataDependency[] dependenciesField;
-
+        
+        private packageMetadataDependencies dependenciesField;
+        
         private packageMetadataFrameworkAssembly[] frameworkAssembliesField;
 
         private string minClientVersionField;
@@ -240,15 +240,13 @@ namespace nugetory.Tools
                 this.tagsField = value;
             }
         }
-
-        [XmlArrayItem("dependency", IsNullable = false)]
-        public packageMetadataDependency[] dependencies
+        
+        public packageMetadataDependencies dependencies
         {
             get
             {
                 return this.dependenciesField;
-            }
-            set
+            } set
             {
                 this.dependenciesField = value;
             }
@@ -279,6 +277,25 @@ namespace nugetory.Tools
                 this.minClientVersionField = value;
             }
         }
+    }
+
+    public class packageMetadataDependencies
+    {
+        [XmlElement]
+        public packageMetadataDependency[] dependency { get; set; }
+
+        [XmlElement]
+        public packageMetadataDependencyGroup[] group { get; set; }
+    }
+
+    public class packageMetadataDependencyGroup
+    {
+        [XmlAttribute]
+        public string targetFramework { get; set; }
+
+
+        [XmlElement]
+        public packageMetadataDependency[] dependency { get; set; }
     }
 
     public class packageMetadataDependency

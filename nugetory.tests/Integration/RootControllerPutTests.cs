@@ -7,6 +7,7 @@ using nugetory.Data.Entities;
 using nugetory.Endpoint;
 using nugetory.tests.Support;
 using NUnit.Framework;
+using System.Text;
 
 namespace nugetory.tests.Integration
 {
@@ -92,7 +93,7 @@ namespace nugetory.tests.Integration
             Assert.AreEqual(HttpStatusCode.Unauthorized, responseCode);
             Assert.AreEqual(0, PackageDAO.Count().Result);
         }
-
+        
         [Category("nugetory.Integration.RootControllerUploadPackage"), Test, Timeout(1000)]
         public void RootControllerPutApiKeySuccessTest()
         {
@@ -101,7 +102,9 @@ namespace nugetory.tests.Integration
 
             NugetPackage packageV000 = NugetSamplePackages.nugetoryV000;
             byte[] request = Convert.FromBase64String(packageV000.Base64Post);
-            
+
+            string strRequest = Encoding.ASCII.GetString(request);
+
             HttpStatusCode responseCode = HttpClient.Invoke(InvokeUrl, "PUT", request, packageV000.ContentType,
                 packageV000.ContentLength);
 
@@ -115,7 +118,7 @@ namespace nugetory.tests.Integration
 
             NugetPackage packageV001 = NugetSamplePackages.nugetoryV001;
             request = Convert.FromBase64String(packageV001.Base64Post);
-
+            
             responseCode = HttpClient.Invoke(InvokeUrl, "PUT", request, packageV001.ContentType,
                 packageV001.ContentLength);
 
@@ -123,6 +126,7 @@ namespace nugetory.tests.Integration
             Assert.AreEqual(2, PackageDAO.Count().Result);
             Package pkgV000 = PackageDAO.Read().Result.FirstOrDefault(p => p.Version == packageV000.Version);
             Package pkgV001 = PackageDAO.Read().Result.FirstOrDefault(p => p.Version == packageV001.Version);
+            
             Assert.NotNull(pkgV000);
             Assert.NotNull(pkgV001);
             Assert.AreEqual(packageV000.Title, pkgV000.Title);
@@ -152,6 +156,7 @@ namespace nugetory.tests.Integration
 
             pkgV000 = PackageDAO.Read().Result.FirstOrDefault(p => p.Version == packageV000.Version);
             pkgV001 = PackageDAO.Read().Result.FirstOrDefault(p => p.Version == packageV001.Version);
+
             Package pkgV002 = PackageDAO.Read().Result.FirstOrDefault(p => p.Version == packageV002.Version);
             Package pkgV003 = PackageDAO.Read().Result.FirstOrDefault(p => p.Version == packageV003.Version);
             Assert.NotNull(pkgV000);

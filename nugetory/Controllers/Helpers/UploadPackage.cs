@@ -9,6 +9,7 @@ using HttpMultipartParser;
 using nugetory.Data.DAO;
 using nugetory.Exceptions;
 using nugetory.Logging;
+using System.Text;
 
 namespace nugetory.Controllers.Helpers
 {
@@ -31,6 +32,18 @@ namespace nugetory.Controllers.Helpers
                 MemoryStream tempStream = new MemoryStream();
                 reqStream.CopyTo(tempStream);
 
+                // TODO: Remove
+
+                //tempStream.Seek(0, SeekOrigin.Begin);
+                //tempStream.Flush();
+
+                //StreamReader sr = new StreamReader(tempStream);
+                //string content = sr.ReadToEnd();
+                //string base64Content = Convert.ToBase64String(Encoding.ASCII.GetBytes(content));
+                //int contentLength = base64Content.Length;
+
+                //
+                
                 tempStream.Seek(0, SeekOrigin.End);
                 Log.Submit(LogLevel.Debug, "Upload request has " + tempStream.Length + " bytes");
                 tempStream.Position = 0;
